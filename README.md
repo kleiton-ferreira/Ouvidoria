@@ -11,7 +11,7 @@ Alunos:
 
 Observações:
 
-1) No MySQL Wokbench, cria as seguintes tabelas:
+1) No MySQL Wokbench, cria o schema chamado "ouvidoria" com as seguintes tabelas:
 
 create table reclamacoes (
 codigo int auto_increment,
