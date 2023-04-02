@@ -27,7 +27,10 @@ primary key (codigo)
 
 );
 
-2) Trocar a senha do MySQL Workbench, no aquivo main (código pricipal), pela senha do MySQL em uso na hora de rodar o código para estabelecer a conexão entre o Pycharm e o MySQL.
 
-3) Utilizamos o código “Try Except” para evitar erros ao digitar floats e strings nas opções de input.
+2) Trocar a senha do MySQL Workbench, no aquivo ouvidoria.py (código pricipal), pela senha do MySQL em uso na hora de rodar o código para estabelecer a conexão entre o Pycharm e o MySQL.
+
+3) Copia o arquivo operacoesbd.py para a pasta do projeto, para poder rodar o código integrado ao MySQL.
+
+4) Utilizamos o código “Try Except” para evitar erros ao digitar floats e strings nas opções de input.
 

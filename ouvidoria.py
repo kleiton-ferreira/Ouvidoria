@@ -1,12 +1,12 @@
 from operacoesbd import *
 
-conexao = abrirBancoDados('localhost', 'root', '12345', 'ouvidoria')
+conexao = abrirBancoDados('localhost', 'root', 'xtreme09xSQL', 'ouvidoria')
 
 opcao = 10
 
 while opcao != 9:
     print()
-    print('HOSPITAL zZz')
+    print('UNIVERSIDADE zZz')
     print('PORTAL DE OUVIDORIA')
     print()
     print('OPÇÕES:')
@@ -70,15 +70,15 @@ while opcao != 9:
             try:
                 codigo = int(input('Digite o código da reclamação: '))
                 consultaListagem = ('select * from reclamacoes where codigo = ' + str(codigo))
-                listaReclamacoes = listarBancoDados(conexao, consultaListagem)
+                listaReclamacaoPesquisada = listarBancoDados(conexao, consultaListagem)
 
-                if len(listaReclamacoes) == 0:
+                if len(listaReclamacaoPesquisada) == 0:
                     print('Código inválido!')
                 else:
                     print()
                     print('Resultado da pesquisa')
-                    for reclamacao in listaReclamacoes:
-                        print('Código:', reclamacao[0], 'Reclamação:', reclamacao[1])
+                    for reclamacao in listaReclamacaoPesquisada:
+                        print('Código da reclamção pesquisada:', reclamacao[0], 'Reclamação pesquisada:', reclamacao[1])
             except ValueError:
                 print('Código inválido!')
 
@@ -99,16 +99,19 @@ while opcao != 9:
             try:
                 codigo = int(input('Digite o código da reclamação a ser removida: '))
                 consultaListagem = ('select * from reclamacoes where codigo = ' + str(codigo))
-                listaReclamacoes = listarBancoDados(conexao, consultaListagem)
+                listaReclamacaoRemovida = listarBancoDados(conexao, consultaListagem)
 
-                if len(listaReclamacoes) == 0:
+                if len(listaReclamacaoRemovida) == 0:
                     print('Código inválido!')
                 else:
                     consultaRemoverReclamacao = 'delete from reclamacoes where codigo = %s'
                     dados = (codigo,)
 
                     excluirBancoDados(conexao, consultaRemoverReclamacao, dados)
-                    print('Reclamação removida com sucesso!')
+                    for reclamacao in listaReclamacaoRemovida:
+                        print('Reclamação removida com sucesso!')
+                        print('Código da reclamação removida:', reclamacao[0], 'Reclamação removida:', reclamacao[1])
+
             except ValueError:
                 print('Código inválido!')
 
@@ -151,15 +154,15 @@ while opcao != 9:
             try:
                 codigo = int(input('Digite o código do elogio e/ou sugestão: '))
                 consultaListagem = ('select * from elogios_sugestoes where codigo = ' + str(codigo))
-                listaElogioSugestao = listarBancoDados(conexao, consultaListagem)
+                listaElogioSugestaoPesquisada = listarBancoDados(conexao, consultaListagem)
 
-                if len(listaElogioSugestao) == 0:
+                if len(listaElogioSugestaoPesquisada) == 0:
                     print('Código inválido!')
                 else:
                     print()
                     print('Resultado da pesquisa')
-                    for elogioSugestao in listaElogioSugestao:
-                        print('Código:', elogioSugestao[0], 'Elogio e/ou Sugestão:', elogioSugestao[1])
+                    for elogioSugestao in listaElogioSugestaoPesquisada:
+                        print('Código do elogio e/ou sugestão pesquisado(a):', elogioSugestao[0], 'Elogio e/ou Sugestão pesquisado(a):', elogioSugestao[1])
 
             except ValueError:
                 print('Código inválido!')
@@ -180,9 +183,9 @@ while opcao != 9:
             try:
                 codigo = int(input('Digite o código do elogio e/ou sugestão a ser removido(a): '))
                 consultaListagem = ('select * from elogios_sugestoes where codigo = ' + str(codigo))
-                listaElogioSugestao = listarBancoDados(conexao, consultaListagem)
+                listaElogioSugestaoRemovido = listarBancoDados(conexao, consultaListagem)
 
-                if len(listaElogioSugestao) == 0:
+                if len(listaElogioSugestaoRemovido) == 0:
                     print('Código inválido!')
                 else:
                     consultaRemoverElogioSugestao = 'delete from elogios_sugestoes where codigo = %s'
@@ -190,6 +193,8 @@ while opcao != 9:
 
                     excluirBancoDados(conexao, consultaRemoverElogioSugestao, dados)
                     print('Elogio e/ou sugestão removido(a) com sucesso!')
+                    for elogioSugestao in listaElogioSugestaoRemovido:
+                        print('Código do elogio e/ou seguestão removido(a):', elogioSugestao[0], 'Elogio e/ou Sugestão removido(a):', elogioSugestao[1])
             except ValueError:
                 print('Código inválido!')
 
